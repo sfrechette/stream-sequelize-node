@@ -1,0 +1,26 @@
+{
+  "name": "stream-sequelize-node",
+  "version": "1.0.0",
+  "description": "Ingest sample PubNub stream using Sequelize",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sfrechette/stream-sequelize-node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sfrechette/stream-sequelize-node/issues"
+  },
+  "homepage": "https://github.com/sfrechette/stream-sequelize-node#readme",
+  "dependencies": {
+    "dotenv": "^5.0.1",
+    "pg": "^7.4.1",
+    "pg-hstore": "^2.3.2",
+    "pubnub": "^4.20.2",
+    "sequelize": "^4.37.6"
+  }
+}
