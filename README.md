@@ -19,11 +19,11 @@ create extension if not exists timescaledb cascade;
 
 ```
 create table sensor (
-	time 				bigint not null, 
-	sensor_uuid 		text not null,
-	humidity 			double precision not null, 
-	photosensor 		double precision not null, 
-	radiation_level 	double precision not null, 
+	time                bigint not null, 
+	sensor_uuid         text not null,
+	humidity            double precision not null, 
+	photosensor         double precision not null, 
+	radiation_level     double precision not null, 
 	ambient_temperature double precision not null
 );
 ```
