@@ -1,8 +1,8 @@
 {
   "name": "stream-sequelize-node",
   "version": "1.0.0",
-  "description": "Ingest sample PubNub stream using Sequelize",
-  "main": "index.js",
+  "description": "Ingest sample PubNub stream using Sequelize to Postgres with TimescaleDB extension installed and enabled for time series analysis",
+  "main": "ingest.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/sfrechette/stream-sequelize-node.git"
   },
-  "author": "",
+  "author": "Stéphane Fréchette",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/sfrechette/stream-sequelize-node/issues"

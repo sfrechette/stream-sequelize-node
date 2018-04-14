@@ -1,8 +1,7 @@
 # stream-sequelize-node
 Ingest sample PubNub stream using Sequelize to Postgres with TimescaleDB extension installed and enabled for time series analysis 
 
-Work in Progres...
-
+<mark>Work in Progres...</mark>
 ## Create Postgres database, schema definition, TimescaleDB extension and hypertable
 
 ```

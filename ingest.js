@@ -1,9 +1,11 @@
 var pubnub = require('pubnub');
 var sequelize = require('sequelize');
+var dotenv = require('dotenv');
+dotenv.load();
 
-var connection = new sequelize('sensor_network', POSTGRES_USER_NAME, POSTGRES_USER_PASSWORD, {
-    host: POSTGRES_HOST,
-    port: POSTGRES_PORT,
+var connection = new sequelize('sensor_network', process.env.DB_SERVER_USER_NAME, process.env.DB_SERVER_USER_PASSWORD, {
+    host: process.env.DB_SERVER_HOST,
+    port: process.env.DB_SERVER_PORT,
     dialect: 'postgres',
     logging:()=>{}
 });
