@@ -24,7 +24,8 @@ node ingest.js
 ```
 ## Prerequesites  
 Running this application assumes that you already have an instance of Postgres running and have installed the TimescaleDB extension. 
-If not please refer the following documentation:    
+If not please refer the following documentation:  
+
 Getting started, installing and setting up  
 https://docs.timescale.com/v0.9/getting-started
 
@@ -80,9 +81,8 @@ order by five_min desc, avg_rad desc;
 ```
 
 ### Links
-**TimescaleDB** 
-Getting started, installing and setting up  
-https://docs.timescale.com/v0.9/getting-started
+**TimescaleDB**     
+https://www.timescale.com/
 
 **Data feed**   
 Sensor Network Realtime Data - feed that provides sensor information from artificial sensors.   
