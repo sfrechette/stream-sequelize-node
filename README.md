@@ -1,5 +1,5 @@
 # stream-sequelize-node
-Ingest sample PubNub stream using Sequelize to Postgres with TimescaleDB extension installed and enabled for time series analysis 
+Ingest sample PubNub realtime data stream using Sequelize to Postgres with TimescaleDB extension installed and enabled for time series analysis. 
 ### Installation    
 Clone repository
 ```
@@ -56,13 +56,28 @@ create table sensor (
 ```
 
 ```sql
+create index on sensor(time desc);
+-- 86400000000 is in usecs and is equal to 1 day
 select create_hypertable('sensor', 'time', chunk_time_interval => 86400000000);
 ```
 
 Once completed, you can now run the application to start ingesting data in your database.
 
 ### Sample queries
-TODO
+Assuming that you have been ingesting data for a while (you can modify the time interval), run some queries to test and validate how Timescale performs nicely in fetching results while data is also being ingested in the database. 
+```sql
+select 	time_bucket('5 minutes', to_timestamp(time)) AS five_min,
+    	count(*),
+    	avg(radiation_level) AS avg_rad,
+    	avg(humidity) AS avg_hum
+from 	sensor
+group by five_min
+order by five_min desc, avg_rad desc;
+```
+
+```sql 
+
+```
 
 ### Links
 **TimescaleDB** 
