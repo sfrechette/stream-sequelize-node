@@ -2,7 +2,7 @@
 Ingest sample PubNub stream using Sequelize to Postgres with TimescaleDB extension installed and enabled for time series analysis 
 
 <mark>Work in Progres...</mark>
-## Create Postgres database, schema definition, TimescaleDB extension and hypertable
+### Create Postgres database, schema definition, TimescaleDB extension and hypertable
 
 ```
 create database sensor_network;

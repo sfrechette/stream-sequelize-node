@@ -3,13 +3,16 @@ var sequelize = require('sequelize');
 var dotenv = require('dotenv');
 dotenv.load();
 
+// Initialize connection to database (using environment variables)
 var connection = new sequelize('sensor_network', process.env.DB_SERVER_USER_NAME, process.env.DB_SERVER_USER_PASSWORD, {
     host: process.env.DB_SERVER_HOST,
     port: process.env.DB_SERVER_PORT,
     dialect: 'postgres',
+    operatorsAliases: false,
     logging:()=>{}
 });
 
+// Define model 
 var sensor = connection.define('sensor', {
     time: {
         type: sequelize.BIGINT,
@@ -41,23 +44,26 @@ var sensor = connection.define('sensor', {
     freezeTableName: true
 });
 
+// Initialize PubNub client
 var pubnub = new pubnub({
     ssl: true,
     subscribe_key: 'sub-c-5f1b7c8e-fbee-11e3-aa40-02ee2ddab7fe'
 });
 
+// Subscribe (listen on) to channel 
 pubnub.subscribe({
     channels: ['pubnub-sensor-network']
 });
 
+// Handle message payload
 pubnub.addListener({
     message: function (message) {
         console.log(message.message);
         connection.sync({
             //logging: ()=>{} 
-            
-        })
+         })
         .then(function () {
+            // Build and Save message stream to database 
             var sensorInstance = sensor.build({
                 time: message.message.timestamp,
                 sensor_uuid: message.message.sensor_uuid,
@@ -67,9 +73,9 @@ pubnub.addListener({
                 ambient_temperature: message.message.ambient_temperature
             })
             sensorInstance.save()
-            //if (Math.random() > .9) {
-            //    throw new Error('Something unusual'+new Date().toISOString())
-            //}
+                //if (Math.random() > .9) {
+                    //throw new Error('Something unusual'+new Date().toISOString())
+                //}
         })
         .catch(function (err) {
             console.log(err);          
