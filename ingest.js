@@ -4,7 +4,7 @@ var dotenv = require('dotenv');
 dotenv.load();
 
 // Initialize connection to database (using environment variables)
-var connection = new sequelize('sensor_network', process.env.DB_SERVER_USER_NAME, process.env.DB_SERVER_USER_PASSWORD, {
+var connection = new sequelize('market_orders', process.env.DB_SERVER_USER_NAME, process.env.DB_SERVER_USER_PASSWORD, {
     host: process.env.DB_SERVER_HOST,
     port: process.env.DB_SERVER_PORT,
     dialect: 'postgres',
@@ -13,29 +13,25 @@ var connection = new sequelize('sensor_network', process.env.DB_SERVER_USER_NAME
 });
 
 // Define model 
-var sensor = connection.define('sensor', {
-    time: {
+var order = connection.define('orders', {
+    order_time: {
         type: sequelize.BIGINT,
         allowNull: false, 
         primaryKey: true
     },
-    sensor_uuid: {
+    trade_type: {
         type: sequelize.STRING,
         allowNull: false
     },
-    humidity: {
+    symbol: {
+        type: sequelize.STRING,
+        allowNull: false
+    },
+    order_quantity: {
         type: sequelize.DOUBLE,
         allowNull: false
     },
-    photosensor: {
-        type: sequelize.DOUBLE,
-        allowNull: false
-    },
-    radiation_level: {
-        type: sequelize.INTEGER,
-        allowNull: false
-    },
-    ambient_temperature: {
+    bid_price: {
         type: sequelize.DOUBLE,
         allowNull: false
     }
@@ -47,12 +43,12 @@ var sensor = connection.define('sensor', {
 // Initialize PubNub client
 var pubnub = new pubnub({
     ssl: true,
-    subscribe_key: 'sub-c-5f1b7c8e-fbee-11e3-aa40-02ee2ddab7fe'
+    subscribe_key: 'sub-c-4377ab04-f100-11e3-bffd-02ee2ddab7fe'
 });
 
 // Subscribe (listen on) to channel 
 pubnub.subscribe({
-    channels: ['pubnub-sensor-network']
+    channels: ['pubnub-market-orders']
 });
 
 // Handle message payload
@@ -64,15 +60,14 @@ pubnub.addListener({
          })
         .then(function () {
             // Build and Save message stream to database 
-            var sensorInstance = sensor.build({
-                time: message.message.timestamp,
-                sensor_uuid: message.message.sensor_uuid,
-                humidity: message.message.humidity,
-                photosensor: message.message.photosensor,
-                radiation_level: message.message.radiation_level,
-                ambient_temperature: message.message.ambient_temperature
+            var orderInstance = order.build({
+                order_time: message.message.timestamp,
+                trade_type: message.message.trade_type,
+                symbol: message.message.symbol,
+                order_quantity: message.message.order_quantity,
+                bid_price: message.message.bid_price
             })
-            sensorInstance.save()
+            orderInstance.save()
                 //if (Math.random() > .9) {
                     //throw new Error('Something unusual'+new Date().toISOString())
                 //}
