@@ -1,9 +1,9 @@
 # stream-sequelize-node
 Ingest sample Market Orders Data feed from PubNub to Postgres with TimescaleDB extension installed and enabled for time series analysis.
 ### Installation    
-Clone repository
+Clone or download repository
 ```
-https://github.com/sfrechette/stream-sequelize-node.git 
+git clone https://github.com/sfrechette/stream-sequelize-node.git 
 cd stream-sequilize-node
 ```
 Install the dependencies with the following command:
