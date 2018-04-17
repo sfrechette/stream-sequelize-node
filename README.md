@@ -98,7 +98,7 @@ select 	order_time,
 from 	orders
 where	order_quantity > 975 and 
         symbol = 'Bespin Gas' and 
-        trade_type = 'market';
+        trade_type = 'market' limit 20;
 ```
 
 ### Links
