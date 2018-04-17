@@ -74,7 +74,8 @@ select 	time_bucket('5 minutes', to_timestamp(order_time)) as five_min,
         avg(bid_price) as avg_bid_price
 from 	orders
 where	symbol = 'Google' and trade_type = 'day'
-group by five_min;
+group by five_min
+order by five_min limit 20;
 ```
 
 ```sql
@@ -85,7 +86,7 @@ select 	time_bucket('2 minutes', to_timestamp(order_time)) as two_min,
         max(bid_price) as max_bid_price 
 from 	orders
 group by two_min, symbol
-order by two_min desc;
+order by two_min desc limit 20;
 ```
 
 ```sql 
