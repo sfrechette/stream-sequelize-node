@@ -30,7 +30,7 @@ Getting started, installing and setting up
 https://docs.timescale.com/v0.9/getting-started
 
 ### Database schema 
-Next you need to execute the following SQL code snippets in your Postgres environement in order to create the database, TimescaleDB extension, schema definition, and hypertable.
+Next you need to execute the following SQL code snippets in your Postgres environment in order to create the database, TimescaleDB extension, schema definition, and hypertable.
 
 ```sql
 
