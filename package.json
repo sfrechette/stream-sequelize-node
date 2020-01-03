@@ -17,10 +17,10 @@
   },
   "homepage": "https://github.com/sfrechette/stream-sequelize-node#readme",
   "dependencies": {
-    "dotenv": "^5.0.1",
-    "pg": "^7.4.1",
-    "pg-hstore": "^2.3.2",
-    "pubnub": "^4.20.2",
-    "sequelize": "^4.37.6"
+    "dotenv": "^8.2.0",
+    "pg": "^7.17.0",
+    "pg-hstore": "^2.3.3",
+    "pubnub": "^4.27.2",
+    "sequelize": "^5.21.3"
   }
 }

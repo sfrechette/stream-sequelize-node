@@ -8,7 +8,7 @@ var connection = new sequelize('market_orders', process.env.DB_SERVER_USER_NAME,
     host: process.env.DB_SERVER_HOST,
     port: process.env.DB_SERVER_PORT,
     dialect: 'postgres',
-    operatorsAliases: false,
+    //operatorsAliases: false,
     logging:()=>{}
 });
 
@@ -57,7 +57,7 @@ pubnub.addListener({
         console.log(message.message);
         connection.sync({
             //logging: ()=>{} 
-         })
+        })
         .then(function () {
             // Build and Save message stream to database 
             var orderInstance = order.build({
@@ -67,7 +67,7 @@ pubnub.addListener({
                 order_quantity: message.message.order_quantity,
                 bid_price: message.message.bid_price
             })
-            orderInstance.save()
+            //orderInstance.save()
                 //if (Math.random() > .9) {
                     //throw new Error('Something unusual'+new Date().toISOString())
                 //}
