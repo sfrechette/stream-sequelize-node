@@ -18,7 +18,7 @@
   "homepage": "https://github.com/sfrechette/stream-sequelize-node#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "pg": "^7.17.0",
+    "pg": "^8.11.0",
     "pg-hstore": "^2.3.3",
     "pubnub": "^4.37.0",
     "sequelize": "^6.29.0"
